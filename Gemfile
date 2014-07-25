@@ -36,6 +36,8 @@ gem "mini_magick"
 
 
 gem 'simple_form'
+
+#status control
 gem 'aasm'
 
 #debug
@@ -44,10 +46,16 @@ gem 'better_errors'
 
 
 group :development do
+  #send test mail 
   gem "letter_opener"
+  #Mail use css
   gem "roadie"
-  gem "stripe"
+  
 end
+
+# stripe
+gem 'stripe'
+gem 'settingslogic'
 
 
 # Use ActiveModel has_secure_password

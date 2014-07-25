@@ -1,0 +1,18 @@
+# config/application.yml
+defaults: &defaults
+  cool:
+    saweet: nested settings
+  neat_setting: 24
+  awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
+
+development:
+  <<: *defaults
+  neat_setting: 800
+  stripe_pubKey: pk_test_4SgFJc83NHZkGN03iC49RuJq 
+  stripe_apiKey: sk_test_4SgF57R4awZwZH8LrSBpojVK
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
