@@ -1,0 +1,10 @@
+
+<p> 
+  感謝您的消費
+</p>
+<p>
+  本次的消費金額總共為 <%= @order.total %> 元
+</p>
+<p>
+請點擊此網址(<%=link_to @order.id ,account_orderitem_url(@order.id) %>)
+</p>
