@@ -5,8 +5,8 @@ class CardChargesController < ApplicationController
 
     @order = current_user.orders.find_by_token(params[:order_id])
     @amount = @order.total * 100 # in cents
-    Stripe.api_key = 'sk_test_4SgF57R4awZwZH8LrSBpojVK'
-    #Stripe.api_key = Settings.stripe_apiKey
+    #Stripe.api_key = 'sk_test_4SgF57R4awZwZH8LrSBpojVK'
+    Stripe.api_key = Settings.stripe_apiKey
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -23,7 +23,7 @@ class CardChargesController < ApplicationController
 
     @order.set_payment_with!("credit_card")
     @order.make_payment!
-
+    OrderMailer.notify_payment(@order).deliver
     redirect_to order_path(@order.token), :notice => "成功完成付款"
 
   rescue Stripe::CardError => e

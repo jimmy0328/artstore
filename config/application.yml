@@ -10,7 +10,9 @@ development:
   neat_setting: 8002
   stripe_pubKey: pk_test_4SgFJc83NHZkGN03iC49RuJq 
   stripe_apiKey: sk_test_4SgF57R4awZwZH8LrSBpojVK
-  
+  gmail_username: jimmyphenphen@gmail.com
+  gmail_password: jimmy52605260
+
 test:
   <<: *defaults
 

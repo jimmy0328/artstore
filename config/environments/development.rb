@@ -35,5 +35,27 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  config.action_mailer.delivery_method= :letter_opener
+  #config.action_mailer.delivery_method= :letter_opener
+
+  # config.action_mailer.smtp_settings = {
+  #   :port           =>578,
+  #   :address        => 'smtp.mailgun.org',
+  #   :user_name      => 'postmaster@sandbox21d816f1f4374af09016bb2643863880.mailgun.org',
+  #   :password       => 'f5d174ff91d2cf2a9377a9f2686bf716',
+  #   :domain         => 'sandbox21d816f1f4374af09016bb2643863880.mailgun.org',
+  #   :authentication => :plain,
+  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'gmail.com',
+  :user_name            => Settings.gmail_username,
+  :password             => Settings.gmail_password,
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
+
+
 end
