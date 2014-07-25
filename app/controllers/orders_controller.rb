@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     if @order.save
       @order.build_item_cache_from_cart(current_cart)
       @order.calculate_total!(current_cart)
-
+      OrderMailer.notify_order_placed(@order).deliver
       redirect_to order_path(@order.token)
     else
       render "carts/checkout"
@@ -23,11 +23,12 @@ class OrdersController < ApplicationController
 
   def pay_with_credit_card
     @order = current_user.orders.find_by_token(params[:id])
-    @order.set_payment_with!("credit_card") 
-    #@order.pay! 
-    @order.make_payment!
-    redirect_to root_path flash[:notice] = "成功完成付款"
-    current_cart.clear!
+    # @order.set_payment_with!("credit_card") 
+    # #@order.pay! 
+    # OrderMailer.notify_payment(@order).deliver
+    # @order.make_payment!
+    # redirect_to root_path flash[:notice] = "成功完成付款"
+    # current_cart.clear!
   end
 
 

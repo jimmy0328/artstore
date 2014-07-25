@@ -43,7 +43,11 @@ gem 'binding_of_caller'
 gem 'better_errors'
 
 
-
+group :development do
+  gem "letter_opener"
+  gem "roadie"
+  gem "stripe"
+end
 
 
 # Use ActiveModel has_secure_password
