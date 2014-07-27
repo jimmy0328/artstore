@@ -20,7 +20,7 @@ class CardChargesController < ApplicationController
       :description => @order.token ,
       :currency => 'usd'
     )
-
+    #StripeService.new(current_user,params).paying!
     @order.set_payment_with!("credit_card")
     @order.make_payment!
     OrderMailer.notify_payment(@order).deliver
