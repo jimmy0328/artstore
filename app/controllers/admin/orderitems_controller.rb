@@ -1,7 +1,4 @@
-class Admin::OrderitemsController < ApplicationController
-
-  before_action :authenticate_user!
-  before_action :admin_required
+class Admin::OrderitemsController < AdminController
 
   def show
     @orders = Order.find(params[:id])

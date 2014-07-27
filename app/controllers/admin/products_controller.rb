@@ -1,8 +1,5 @@
-class Admin::ProductsController < ApplicationController
-  
-  before_action :authenticate_user!
-  before_action :admin_required
-  
+class Admin::ProductsController < AdminController
+
 
   def index
     @search = Product.search(params[:q])
@@ -36,7 +33,7 @@ class Admin::ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy!
-      redirect_to admin_products_path
+    redirect_to admin_products_path
   end
 
   def create

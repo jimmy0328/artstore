@@ -1,7 +1,5 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < AdminController
 
-  before_action :authenticate_user!
-  before_action :admin_required
   before_filter :find_order, :except => [:index]
 
   def index
