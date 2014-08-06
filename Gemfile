@@ -44,6 +44,14 @@ gem "will_paginate"
 gem "ransack"
 
 
+gem 'puma'
+
+group :development do
+ gem 'capistrano', '~> 2.15.5'
+ gem 'visionbundles', github: 'afunction/visionbundles'
+ gem 'rvm-capistrano'
+end
+
 group :development do 
   gem "annotate"
   gem "letter_opener"
