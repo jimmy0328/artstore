@@ -1,25 +1,47 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
+require 'rvm/capistrano'
+require 'visionbundles'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+# RVM Settings
+set :rvm_ruby_string, '2.1.0'
+set :rvm_type, :user
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+# Recipes Settings
+include_recipes :secret, :nginx, :puma, :db, :dev
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+# Nginx
+set :nginx_vhost_domain, '128.199.167.221'
+set :nginx_upstream_via_sock_file, false
+set :nginx_app_servers, ['127.0.0.1:9290']
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+# Puma
+set :puma_bind_for, :tcp
+set :puma_bind_to, '127.0.0.1'
+set :puma_bind_port, '9290'
+set :puma_thread_min, 32
+set :puma_thread_max, 32
+set :puma_workers, 3
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+# Role Settings
+server '128.199.167.221', :web, :app, :db, primary: true
+
+# Capistrano Base Setting
+set :application, 'artstore'
+set :user, 'rails'
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_via, :remote_cache
+set :use_sudo, false
+set :rails_env, 'production'
+
+# Git Settings
+set :scm, :git
+set :repository, "https://github.com/jimmy0328/#{application}.git"
+set :branch, 'master'
+
+# Others
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
+# Deploy Flow
+after 'deploy', 'deploy:cleanup' # keep only the last 5 releases
