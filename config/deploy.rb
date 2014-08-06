@@ -8,7 +8,7 @@ set :rvm_type, :user
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 # Recipes Settings
-include_recipes :secret, :nginx, :puma, :db, :dev
+include_recipes :nginx, :puma, :db, :dev
 
 # Nginx
 set :nginx_vhost_domain, '128.199.167.221'
