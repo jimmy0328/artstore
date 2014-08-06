@@ -11,7 +11,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 include_recipes :nginx, :puma, :db, :dev
 
 # Nginx
-set :nginx_vhost_domain, '128.199.167.221'
+set :nginx_vhost_domain, '128.199.216.178'
 set :nginx_upstream_via_sock_file, false
 set :nginx_app_servers, ['127.0.0.1:9290']
 
@@ -24,7 +24,7 @@ set :puma_thread_max, 32
 set :puma_workers, 3
 
 # Role Settings
-server '128.199.167.221', :web, :app, :db, primary: true
+server '128.199.216.178', :web, :app, :db, primary: true
 
 # Capistrano Base Setting
 set :application, 'artstore'

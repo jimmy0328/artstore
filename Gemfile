@@ -46,7 +46,7 @@ gem "ransack"
 group :development do 
   gem "annotate"
   gem "letter_opener"
-  gem 'roadie'
+  #gem 'roadie'
 end
 
 
