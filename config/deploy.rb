@@ -27,7 +27,7 @@ set :puma_workers, 3
 server '128.199.216.178', :web, :app, :db, primary: true
 
 # Capistrano Base Setting
-set :application, 'artstore'
+set :application, 'store'
 set :user, 'rails'
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
@@ -37,7 +37,7 @@ set :rails_env, 'production'
 # Git Settings
 set :scm, :git
 set :repository, "https://github.com/jimmy0328/#{application}.git"
-set :branch, 'master'
+set :branch, 'store-v3-solution'
 
 # Others
 default_run_options[:pty] = true
