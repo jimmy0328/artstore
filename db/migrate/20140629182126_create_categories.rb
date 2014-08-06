@@ -6,7 +6,7 @@ class CreateCategories < ActiveRecord::Migration
     end
 
     for i in 1..10 do 
-      Category.create!(:name => "Category #{n}")
+      Category.create!(:name => "Category #{i}")
     end
   end
 end
