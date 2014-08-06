@@ -37,7 +37,7 @@ set :rails_env, 'production'
 # Git Settings
 set :scm, :git
 set :repository, "https://github.com/jimmy0328/#{application}.git"
-set :branch, 'master'
+set :branch, 'store-v4'
 
 # Others
 default_run_options[:pty] = true
@@ -45,3 +45,15 @@ ssh_options[:forward_agent] = true
 
 # Deploy Flow
 after 'deploy', 'deploy:cleanup' # keep only the last 5 releases
+
+namespace :deploy do
+  task :setup_config_yml do 
+    put File.read("config/config.yml.example"), "#{shared_path}/config/config.yml"
+  end
+  after 'deploy:setup', 'deploy:setup_config_yml'
+
+  task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/config.yml #{release_path}/config/config.yml"
+  end
+  after "deploy:finalize_update", "deploy:symlink_config"
+end
