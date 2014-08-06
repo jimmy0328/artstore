@@ -30,8 +30,9 @@ gem 'spring',        group: :development
 gem 'puma'
 
 group :development do
-  gem 'capistrano', '~> 2.15.5'
-  gem 'visionbundles'
+ gem 'capistrano', '~> 2.15.5'
+ gem 'visionbundles', github: 'afunction/visionbundles'
+ gem 'rvm-capistrano'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
