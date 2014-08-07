@@ -27,7 +27,7 @@ set :puma_workers, 3
 server '128.199.216.178', :web, :app, :db, primary: true
 
 # Capistrano Base Setting
-set :application, 'store'
+set :application, 'artstore'
 set :user, 'rails'
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache

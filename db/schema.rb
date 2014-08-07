@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20140619164232) do
     t.string   "aasm_state",     default: "order_placed"
   end
 
-  add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state"
-  add_index "orders", ["token"], name: "index_orders_on_token"
+  add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state", using: :btree
+  add_index "orders", ["token"], name: "index_orders_on_token", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "product_id"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20140619164232) do
     t.boolean  "is_admin",               default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
