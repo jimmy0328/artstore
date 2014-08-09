@@ -1,0 +1,20 @@
+# config/application.yml
+defaults: &defaults
+  cool:
+    saweet: nested settings
+  neat_setting: 24
+  awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
+
+development:
+  <<: *defaults
+  neat_setting: 8002
+  stripe_pubKey: pk_test_4SgFJc83NHZkGN03iC49RuJq 
+  stripe_apiKey: sk_test_4SgF57R4awZwZH8LrSBpojVK
+  gmail_username: 
+  gmail_password: 
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
