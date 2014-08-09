@@ -59,6 +59,8 @@ gem 'settingslogic'
 
 #search
 gem 'ransack'
+gem 'capistrano'
+gem 'capistrano-ext'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
