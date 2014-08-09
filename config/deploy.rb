@@ -37,7 +37,7 @@ set :rails_env, 'production'
 # Git Settings
 set :scm, :git
 set :repository, "https://github.com/jimmy0328/#{application}.git"
-set :branch, 'store-v3-solution'
+set :branch, 'jimmytest'
 
 # Others
 default_run_options[:pty] = true
